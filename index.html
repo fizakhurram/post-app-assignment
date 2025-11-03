@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+     <div class="my-form" id="myDiv">
+        <img class="logo"
+            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/floral-logo-design-template-58b4cfe80bb61b19148e1e7f71c8ec67_screen.jpg?ts=1663518788"
+            alt=""> <br>
+        <h3>Create an Account</h3>
+         <label for="">First Name:</label>
+        <input type="text" id="name" required>
+        <br>
+        <label for="">Last Name:</label>
+        <input type="text" id="lastname" required>
+        <br>
+        <label for="">Email:</label>
+        <input type="email" id="email" required>
+        <br>
+        <label for="">Password:</label>
+        <input type="password" id="password" required>
+        <br>
+        <button id="submit-btn" onclick="submitForm()">Submit</button>
+    </div>
+
+
+ <div id="post-det" class="post-det">
+        <img class="logo"
+            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/floral-logo-design-template-58b4cfe80bb61b19148e1e7f71c8ec67_screen.jpg?ts=1663518788"
+            alt=""> <br>
+        <h3>Create Post</h3>
+        <label for="">Title:<input type="text" id="title"></label>
+        <br> <br>
+        <label for="">Description: <textarea name="" id="description"></textarea></label>
+        <button class="post-btn" id="post-btn" onclick="postCard()">Post</button>
+    </div>
+
+    <div id="post-card" class="post-card">
+        <div class="intro">
+            <img id="card-logo" class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png
+        " alt=""><h1 id="user-name"></h1>
+        <h2 id="titlecontainer"></h2>
+        <p id="descriptioncontainer"></p>
+        <button class="edit-btn" onclick="editpost()">Edit</button>
+        <button class="delete-btn" onclick="deletepost()">Delete</button>
+        </div>
+    </div>
+
+
+
+
+    <script src="app.js"></script>
+    <!-- sweet alert cdn -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- bootstrap cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
