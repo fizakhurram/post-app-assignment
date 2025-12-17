@@ -5,6 +5,8 @@ var email = document.getElementById('email');
 var password = document.getElementById('password');
 var postDetails = document.getElementById('post-det');
 
+
+
 function submitForm() {
     if (nameInput.value && email.value && lastnameInput.value && password.value) {
         let userData = {
