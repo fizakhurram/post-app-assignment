@@ -38,29 +38,69 @@ var title = document.getElementById('title');
 var titleContainer = document.getElementById('titlecontainer');
 var description = document.getElementById('description');
 var descriptionContainer = document.getElementById('descriptioncontainer');
+var postsContainer = document.getElementById("posts-container");
+
+
+
+function deletepost(btn) {
+    btn.parentElement.remove();
+    swal("Post Deleted", "Only selected post removed", "success");
+}
+
+
+var editingPost = null;
+
 function postCard() {
-    username.innerHTML = nameInput.value + " " + lastnameInput.value;
-    titleContainer.innerHTML = title.value;
-    descriptionContainer.innerHTML = description.value;
     postcard.style.display = "block";
-    postDetails.style.display = "none"
+
+    if (editingPost) {
+        // UPDATE EXISTING POST
+        editingPost.querySelector(".title").textContent = title.value;
+        editingPost.querySelector(".description").textContent = description.value;
+
+        swal("Post Updated!", "Your post has been updated.", "success");
+
+        // Reset editing
+        editingPost = null;
+    } else {
+        // CREATE NEW POST
+        let postHTML = `
+            <div class="intro">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png">
+                <h1 class="user-name">${nameInput.value} ${lastnameInput.value}</h1>
+                <h2 class="title">${title.value}</h2>
+                <p class="description">${description.value}</p>
+                <button class="edit-btn" onclick="editpost(this)">Edit</button>
+                <button class="delete-btn" onclick="deletepost(this)">Delete</button>
+                <button class="morepostbtn" onclick="morePost()">More Post</button>
+            </div>
+        `;
+        postsContainer.innerHTML += postHTML;
+        swal("Post Created!", "Your post has been added.", "success");
+    }
+
+    // Clear form
+    title.value = "";
+    description.value = "";
+    postDetails.style.display = "none";
 }
-function editpost() {
-    username.innerHTML = nameInput.value + " " + lastnameInput.value;
-    titleContainer.innerHTML = title.value;
-    descriptionContainer.innerHTML = description.value;
-    postcard.style.display = "none";
-    postDetails.style.display = "block"
+
+function editpost(btn) {
+    let post = btn.parentElement;
+
+    // Load form fields with selected post data
+    title.value = post.querySelector(".title").textContent;
+    description.value = post.querySelector(".description").textContent;
+
+    // Set editingPost so postCard updates instead of creating new
+    editingPost = post;
+
+    // Show post form
+    postDetails.style.display = "block";
 }
-function deletepost() {
-    postcard.remove();
-    swal({
-        title: "Post Deleted",
-        text: "Leave the site?",
-        icon: "error",
-        button: "Ok",
-    })
-}
+
+
+
 var loginDiv = document.getElementById('login-div');
 
 function loginpage() {
@@ -84,20 +124,20 @@ function loginpage() {
      `
 
 }
-function login(){
-    let savedUser =JSON.parse(localStorage.getItem("userData"));
-     let loginEmail = document.getElementById("login-email").value;
-     let loginPass = document.getElementById('login-pass').value;
-     if(!savedUser){
-        swal("No accounty Found!" , "please create a new Account First" , "error")
+function login() {
+    let savedUser = JSON.parse(localStorage.getItem("userData"));
+    let loginEmail = document.getElementById("login-email").value;
+    let loginPass = document.getElementById('login-pass').value;
+    if (!savedUser) {
+        swal("No accounty Found!", "please create a new Account First", "error")
         return;
-     }
-     if (loginEmail === savedUser.email && loginPass === savedUser.password) {
+    }
+    if (loginEmail === savedUser.email && loginPass === savedUser.password) {
         swal("Login Successful!", "Welcome back!", "success")
-        .then(() => {
-            loginDiv.style.display = "none";
-            postDetails.style.display = "block"; 
-        });
+            .then(() => {
+                loginDiv.style.display = "none";
+                postDetails.style.display = "block";
+            });
 
     } else {
         swal("Invalid Credentials", "Email or password is incorrect", "warning");
@@ -109,8 +149,11 @@ function showSignup() {
     myDiv.style.display = "block";
 }
 
+function morePost() {
+    postDetails.style.display = "block"
+    postcard.style.display = "none"
 
-
+}
 
 
 

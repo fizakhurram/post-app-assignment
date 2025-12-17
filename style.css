@@ -128,6 +128,16 @@ input:focus{
     cursor: pointer;
     transform: scale(110%);
 }
+.morepostbtn{
+     height: 30px;
+    width: 200px;
+    background-color:palevioletred;
+    border: none;
+    border-radius: 20px;
+    margin-top: 30px;
+    font-size: 20px;
+    height: 40px;
+}
 .swal-modal {
   background-color:palevioletred !important; 
   color: white !important;
@@ -203,3 +213,17 @@ border-radius: 50%;
     margin-top: 90px;
     display: none;
 }
+.posts-row {
+    display: flex;          /* Horizontal layout */
+    flex-wrap: wrap;        /* New row if overflow */
+    gap: 20px;              /* Space between posts */
+}
+
+.posts-row .intro {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    width: 300px;           /* Each post width */
+     background-color:palevioletred;
+}
+
